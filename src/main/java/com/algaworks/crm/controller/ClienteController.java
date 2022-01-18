@@ -2,16 +2,23 @@ package com.algaworks.crm.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.algaworks.crm.model.Cliente;
+import com.algaworks.crm.repository.ClienteRepository;
 
 @RestController
 @RequestMapping("clientes")
 public class ClienteController {
 	
+	@Autowired //Injetando uma inatancia de cliente
+	private ClienteRepository clienteRepository; //instanciando clienteRepository
+	
 	@GetMapping
 	public List<Cliente> hello() {
-		return "Olá mundo";
+		return clienteRepository.findAll();
 	}
 }
